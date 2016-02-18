@@ -1,24 +1,166 @@
 <!doctype html>
 <html>
 <head>
-
-<style>
-	body{
-	background-color: black;
-	}
-	
-	#cId{
-	color:white;
-	}
-	
-	
-</style>
+	<style>
+		body{
+		background-color: black;
+		}
+		
+		#cId{
+			color:white;
+		}
+		
+		
+		#myCanvas{
+			margin-left:500px;
+			margin-bottom:300px;
+			border: 1px color white;
+			background-color: white;
+		}
+		
+	</style>
 </head>
 <body>
 	<title> Game HUD </title>
 	
 	<h1 id="cId">Objective:</h1>
 	<h3 id = "cId">This html file is going to show how the hud and gui will work for the game we have chosen</h3>
+	
+	<canvas id="myCanvas" width="500" height="500" style="border: 1px color white" onClick="showCoords(event)"></canvas>
+	
+	<script>
+	var menuCont;
+	var canvas = document.querySelector('canvas');
+	var splashTime;
+	var tempX = 0;
+	var tempY = 0;
+	
+	splashTime = window.setInterval(incmen, 3000);
+	context = canvas.getContext('2d');
+	menuCont = 0;
+	
+	main();
+	
+	function main(){
+;	if(menuCont == 0){
+		splash();
+		}
+	if(menuCont == 1 ){
+		mainMenu();
+		}
+	if(menuCont == 2){
+		settingsMenu();
+		}
+	}
+	
+	function controller(){
+		if (menuCont == 1){
+			if(tempX > 536 && tempY > 372 && tempX < 656 && tempY < 437 ){
+				settingsMenu();
+				menuCont = 2;
+				}
+			if(tempX > 597 && tempY > 453 && tempX < 743 && tempY < 542){
+				contMenu();
+				menuCont = 3;
+				}
+			if(tempX > 755 && tempY > 455 && tempX < 892 && tempY < 542){
+				stageMenu();
+				menuCont = 4;
+				}
+			}
+		if (menuCont == 2){
+			if (tempX > 878 && tempY > 571 && tempX < 990 && tempY < 608){
+				mainMenu();
+				menuCont = 1;
+				}
+			}
+		if (menuCont == 3){
+			if (tempX > 532 && tempY > 546 && tempX < 623 && tempY < 597){
+				mainMenu();
+				menuCont = 1;
+				}
+			}
+		if (menuCont == 4){
+			if (tempX > 517 && tempY > 556 && tempX < 619 && tempY < 610){
+				mainMenu();
+				menuCont = 1;
+				}
+			}
+	}
+	
+	//console function
+	function showCoords(event){
+		var x = event.clientX;
+		var y = event.clientY;
+		tempX = x;
+		tempY = y;
+		console.log("X = " + x);
+		console.log("Y = " + y);
+		controller();
+		console.log(menuCont);
+	}	
+	
+	
+	//Splash Screen
+	function splash()
+	{
+		base_image = new Image();
+		base_image.src = 'Pictures/SplashScreen.png';
+		base_image.onload = function(){
+			context.drawImage(base_image, 0, 0);
+	  }
+	}
+	
+	//Main Menu
+	function mainMenu(){
+		clearInterval(splashTime);
+		context.clearRect(0, 0, canvas.width, canvas.height);
+		base_image = new Image();
+		base_image.src = 'Pictures/mainScreen.png';
+		base_image.onload = function(){
+			context.drawImage(base_image, 0, 0);
+		}
+	}
+	
+	function settingsMenu(){
+		context.clearRect(0, 0, canvas.width, canvas.height);
+		base_image = new Image();
+		base_image.src = 'Pictures/settingMenu.png';
+		base_image.onload = function(){
+			context.drawImage(base_image, 0, 0);
+		}
+	}
+	
+	function contMenu(){
+	context.clearRect(0, 0, canvas.width, canvas.height);
+		base_image = new Image();
+		base_image.src = 'Pictures/contMenu.png';
+		base_image.onload = function(){
+			context.drawImage(base_image, 0, 0);
+		}
+	}
+	
+	function stageMenu(){
+	context.clearRect(0, 0, canvas.width, canvas.height);
+		base_image = new Image();
+		base_image.src = 'Pictures/stageMenu.png';
+		base_image.onload = function(){
+			context.drawImage(base_image, 0, 0);
+		}
+	}
+	//Menu Controller
+	function redraw(){
+		console.log(menuCont);
+		main();
+	}
+	
+	function incmen(){
+		menuCont++;
+		redraw();
+	}
+	
+		
+	</script>
 	
 </body>
 </html>
