@@ -26,7 +26,7 @@
 	<h1 id="cId">Objective:</h1>
 	<h3 id = "cId">This html file is going to show how the hud and gui will work for the game we have chosen</h3>
 	
-	<canvas id="myCanvas" width="500" height="500" style="border: 1px color white" onClick="showCoords(event)"></canvas>
+	<canvas id="myCanvas" width="500" height="500" style="border: 1px color white" onmouseup="showCoords(event)"></canvas>
 	
 	<script>
 	var menuCont;
@@ -54,6 +54,7 @@
 	}
 	
 	function controller(){
+	//Main Menu
 		if (menuCont == 1){
 			if(tempX > 536 && tempY > 372 && tempX < 656 && tempY < 437 ){
 				settingsMenu();
@@ -68,23 +69,54 @@
 				menuCont = 4;
 				}
 			}
+	//Settings Menu
 		if (menuCont == 2){
 			if (tempX > 878 && tempY > 571 && tempX < 990 && tempY < 608){
 				mainMenu();
 				menuCont = 1;
 				}
 			}
+	//Continue Menu
 		if (menuCont == 3){
 			if (tempX > 532 && tempY > 546 && tempX < 623 && tempY < 597){
 				mainMenu();
 				menuCont = 1;
 				}
+			if (tempX > 842 && tempY > 239 && tempX < 870 && tempY < 268){
+				game();
+				menuCont = 5;
+				}
+			if (tempX > 844 && tempY > 320 && tempX < 870 && tempY < 346){
+				game();
+				menuCont = 5;
+				}
+			if (tempX > 845 && tempY > 399 && tempX < 870 && tempY < 425){
+				game();
+				menuCont = 5;
+				}
 			}
+	//New Game Menu
 		if (menuCont == 4){
 			if (tempX > 517 && tempY > 556 && tempX < 619 && tempY < 610){
 				mainMenu();
 				menuCont = 1;
 				}
+				if (tempX > 524 && tempY > 307 && tempX < 699 && tempY < 413){
+					game();
+					menuCont = 5;
+					}
+				if (tempX > 670 && tempY > 429 && tempX < 847 && tempY < 534){
+					game();
+					menuCont = 5;
+					}
+				if (tempX > 817 && tempY > 307 && tempX < 995 && tempY < 413){
+					game();
+					menuCont = 5;
+					}
+			}
+	//Game
+		if(menuCont == 5){
+			
 			}
 	}
 	
@@ -144,6 +176,15 @@
 	context.clearRect(0, 0, canvas.width, canvas.height);
 		base_image = new Image();
 		base_image.src = 'Pictures/stageMenu.png';
+		base_image.onload = function(){
+			context.drawImage(base_image, 0, 0);
+		}
+	}
+	
+	function game(){
+	context.clearRect(0, 0, canvas.width, canvas.height);
+		base_image = new Image();
+		base_image.src = 'Pictures/HUD.png';
 		base_image.onload = function(){
 			context.drawImage(base_image, 0, 0);
 		}
