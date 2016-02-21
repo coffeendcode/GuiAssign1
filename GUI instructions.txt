@@ -1,0 +1,23 @@
+
+
+1.Splash Screen stays on screen for a few seconds, Which will bring you too the main menu, 
+
+2.At the main menu you can go to the settings page, Which has a button to bring you back 
+  To the main menu, if you click on desktop you will have to refresh to restart.
+
+3.Clicking on Continue brings you to the "save" screen , from here you can go back to the menu, the check marks will also bring you to the game screen
+
+4.At the menu you can click "New Game" which brings you too the level select, 
+  Clicking a level button will bring you to the hud screen, 
+
+5.Once in the game screen you can click 
+(Once you go to these screens you cannot go back to the main menu)
+
+  - Esc - Which will bring up the pause menu and the corresponding button wills bring your to the correct menus(if you quit to desktop you cant get back unless you refresh)
+	-you can also press esc again to also return to the game screen.
+  - q - Which brings up the "Game Over" screen
+  - Shift - Will bring up the shop menu (the shop menu was supposed to be a timed event in between waves, so after around 3 sec it will return to the game) 
+
+!=That brings you around to all the accesable screens at this time.=! 
+
+//We are only learning canvas and js this semester and havent delved into it very much yet.//
