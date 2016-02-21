@@ -52,7 +52,7 @@
 			pauseMenu();
 			controller();
 			window.setInterval(pause, 1000);
-		}
+			}
 		
 		if (event.keyCode == 27 && pause == 1){
 			if (menuCont == 6){
@@ -60,7 +60,13 @@
 				game();
 				pause = 0;
 				}
-		}
+			}
+		if(event.keyCode == 16 && pause == 0){
+			menuCont = 7;
+			shop();
+			window.setInterval(game, 3000)
+			}
+		
 	}
 	
 	function main(){
