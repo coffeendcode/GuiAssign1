@@ -61,10 +61,16 @@
 				pause = 0;
 				}
 			}
+			
 		if(event.keyCode == 16 && pause == 0){
 			menuCont = 7;
 			shop();
 			window.setInterval(game, 3000)
+			}
+		
+		if (event.keyCode == 81 && pause == 0){
+			menuCont = 9;
+			gameOver();
 			}
 		
 	}
@@ -177,6 +183,17 @@
 			pause = 1;
 			keyHandler();
 		}
+		
+		if (menuCont == 9 ){
+			if (tempX > 688 && tempY > 325 && tempX < 852 && tempY < 370){
+				game();
+				gameCont = 5;
+				}
+			if (tempX > 688 && tempY > 392 && tempX < 852 && tempY < 435){
+				mainMenu();
+				menuCont = 1;
+				}
+		}
 	}
 	
 	//console function
@@ -271,6 +288,15 @@
 	context.clearRect(0, 0, canvas.width, canvas.height);
 		base_image = new Image();
 		base_image.src = 'Pictures/BlueScreen.png';
+		base_image.onload = function(){
+			context.drawImage(base_image, 0, 0);
+		}
+	}
+	
+	function gameOver(){
+	context.clearRect(0, 0, canvas.width, canvas.height);
+		base_image = new Image();
+		base_image.src = 'Pictures/GameOver.png';
 		base_image.onload = function(){
 			context.drawImage(base_image, 0, 0);
 		}
