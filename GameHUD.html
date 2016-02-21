@@ -34,12 +34,34 @@
 	var splashTime;
 	var tempX = 0;
 	var tempY = 0;
+	var cont = 0;
+	var pause;
 	
 	splashTime = window.setInterval(incmen, 3000);
 	context = canvas.getContext('2d');
 	menuCont = 0;
+	pause = 0;
 	
 	main();
+	window.addEventListener("keyup", keyHandler, false);
+	
+	function keyHandler(event){
+		
+		if (event.keyCode == 27 && pause == 0 && menuCont == 5){
+			menuCont = 6;
+			pauseMenu();
+			controller();
+			window.setInterval(pause, 1000);
+		}
+		
+		if (event.keyCode == 27 && pause == 1){
+			if (menuCont == 6){
+				menuCont = 5;
+				game();
+				pause = 0;
+				}
+		}
+	}
 	
 	function main(){
 ;	if(menuCont == 0){
@@ -71,9 +93,13 @@
 			}
 	//Settings Menu
 		if (menuCont == 2){
-			if (tempX > 878 && tempY > 571 && tempX < 990 && tempY < 608){
+			if (tempX > 878 && tempY > 571 && tempX < 990 && tempY < 608 && pause != 1){
 				mainMenu();
 				menuCont = 1;
+				}
+			if (tempX > 878 && tempY > 571 && tempX < 990 && tempY < 608 && pause == 1){
+				pauseMenu();
+				menuCont = 6;
 				}
 			}
 	//Continue Menu
@@ -105,7 +131,7 @@
 					game();
 					menuCont = 5;
 					}
-				if (tempX > 670 && tempY > 429 && tempX < 847 && tempY < 534){
+				if (tempX > 670 && tempY > 429 && tempX < 847 && tempY < 534 && cont == 1){
 					game();
 					menuCont = 5;
 					}
@@ -113,11 +139,38 @@
 					game();
 					menuCont = 5;
 					}
+				cont = 1;
 			}
 	//Game
 		if(menuCont == 5){
-			
+				
+				cont = 0;
+				pause = 0;
+				keyHandler();
 			}
+	
+	//Pause Menu		
+		if (menuCont == 6){
+			if (tempX > 683 && tempY > 231 && tempX < 847 && tempY < 274 && pause == 1){
+				menuCont = 5;
+				game();
+				keyHandler();
+			}
+			if (tempX > 682 && tempY > 286 && tempX < 847 && tempY < 329 && pause == 1){
+				menuCont = 2;
+				settingsMenu();
+				}
+			if (tempX > 682 && tempY > 340 && tempX < 847 && tempY < 384 && pause == 1){
+				mainMenu();
+				menuCont = 1;
+				}
+			if (tempX > 682 && tempY > 395 && tempX < 847 && tempY < 438 && pause == 1){
+				desktop();
+				menuCont = 8
+				}
+			pause = 1;
+			keyHandler();
+		}
 	}
 	
 	//console function
@@ -189,16 +242,55 @@
 			context.drawImage(base_image, 0, 0);
 		}
 	}
+	
+	function pauseMenu(){
+	context.clearRect(0, 0, canvas.width, canvas.height);
+		base_image = new Image();
+		base_image.src = 'Pictures/Pause.png';
+		base_image.onload = function(){
+			context.drawImage(base_image, 0, 0);
+		}
+	}
+	
+	function shop(){
+	context.clearRect(0, 0, canvas.width, canvas.height);
+		base_image = new Image();
+		base_image.src = 'Pictures/Store2.png';
+		base_image.onload = function(){
+			context.drawImage(base_image, 0, 0);
+		}
+	}
+	
+	function desktop(){
+	context.clearRect(0, 0, canvas.width, canvas.height);
+		base_image = new Image();
+		base_image.src = 'Pictures/BlueScreen.png';
+		base_image.onload = function(){
+			context.drawImage(base_image, 0, 0);
+		}
+	}
+	
+	function gameInit(){
+		addEventListener("onkeyup")
+	}
+	
 	//Menu Controller
 	function redraw(){
 		console.log(menuCont);
 		main();
 	}
 	
+	
+	
 	function incmen(){
 		menuCont++;
 		redraw();
 	}
+	
+	function pause(){
+	pause++
+	}
+	
 	
 		
 	</script>
